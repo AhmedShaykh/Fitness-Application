@@ -1,1 +1,1 @@
-# React TypScript Fitness Application!
+# React TypeScript Fitness Application!
