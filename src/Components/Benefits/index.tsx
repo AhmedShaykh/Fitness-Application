@@ -69,7 +69,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
                 </motion.div>
 
                 <motion.div
-                    className="mt-5 items-center justify-between gap-3 md:gap-8 md:flex"
+                    className="mt-5 items-center justify-between gap-3 md:flex"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
