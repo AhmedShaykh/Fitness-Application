@@ -2,15 +2,62 @@ import { SelectedPage } from "@/Shared/Types";
 import HText from "@/Shared/HText";
 import { motion } from "framer-motion";
 import ContactUsPageGraphic from "@/Assets/ContactUsPageGraphic.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
-type Props = {
-    setSelectedPage: (value: SelectedPage) => void;
-};
-
-const Contact = ({ setSelectedPage }: Props) => {
+const Contact = ({ setSelectedPage }) => {
 
     const inputStyles = `mb-5 w-full rounded-lg bg-primary-300
         px-5 py-3 placeholder-white`;
+
+    const [inpval, setInpval] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+
+    const setVal = (e) => {
+
+        const { name, value } = e.target;
+
+        setInpval(() => {
+            return {
+                ...inpval,
+                [name]: value
+            }
+        })
+    };
+
+    const userData = async (e) => {
+        e.preventDefault();
+
+        const { name, email, message } = inpval;
+
+        if (name === "") {
+            toast.warning("Name Is Required!", {
+                position: "top-center"
+            });
+        } else if (email === "") {
+            toast.error("Email Is Required!", {
+                position: "top-center"
+            });
+        } else if (!email.includes("@")) {
+            toast.warning("Includes @ In Your Email!", {
+                position: "top-center"
+            });
+        } else if (message === "") {
+            toast.error("Message Is Required!", {
+                position: "top-center"
+            });
+        } else {
+            toast.success("Your Message Successfully Sent!", {
+                position: "top-center"
+            });
+
+            setInpval({ ...inpval, name: "", email: "", message: "" });
+        }
+    };
 
     return (
         <section id="contactus" className="mx-auto w-5/6 pt-24 pb-32">
@@ -52,18 +99,24 @@ const Contact = ({ setSelectedPage }: Props) => {
                             visible: { opacity: 1, y: 0 },
                         }}
                     >
-                        <form
-                        >
+
+                        <form>
                             <input
                                 className={inputStyles}
                                 type="text"
                                 placeholder="NAME"
+                                name="name"
+                                value={inpval.name}
+                                onChange={setVal}
                             />
 
                             <input
                                 className={inputStyles}
                                 type="text"
                                 placeholder="EMAIL"
+                                name="email"
+                                value={inpval.email}
+                                onChange={setVal}
                             />
 
                             <textarea
@@ -71,15 +124,20 @@ const Contact = ({ setSelectedPage }: Props) => {
                                 placeholder="MESSAGE"
                                 rows={4}
                                 cols={50}
+                                name="message"
+                                value={inpval.message}
+                                onChange={setVal}
                             />
 
                             <button
                                 type="submit"
                                 className="mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white"
+                                onClick={userData}
                             >
                                 SUBMIT
                             </button>
                         </form>
+                        <ToastContainer />
                     </motion.div>
 
                     <motion.div

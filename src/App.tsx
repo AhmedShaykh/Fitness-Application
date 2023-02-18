@@ -4,7 +4,7 @@ import Home from '@/Components/Home';
 import Benefits from '@/Components/Benefits';
 import Footer from '@/Components/Footer';
 import OurClasses from '@/Components/Classes';
-import Contact from '@/Components/Contact';
+import Contact from '@/Components/Contact/index.jsx';
 import { SelectedPage } from '@/Shared/Types';
 
 const App: FC = () => {
