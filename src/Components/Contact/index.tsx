@@ -1,12 +1,16 @@
+import { ChangeEvent, useState } from "react";
 import { SelectedPage } from "@/Shared/Types";
 import HText from "@/Shared/HText";
 import { motion } from "framer-motion";
 import ContactUsPageGraphic from "@/Assets/ContactUsPageGraphic.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from "react";
 
-const Contact = ({ setSelectedPage }) => {
+type Props = {
+    setSelectedPage: (value: SelectedPage) => void;
+};
+
+const Contact = ({ setSelectedPage }: Props) => {
 
     const inputStyles = `mb-5 w-full rounded-lg bg-primary-300
         px-5 py-3 placeholder-white`;
@@ -17,7 +21,7 @@ const Contact = ({ setSelectedPage }) => {
         message: ""
     });
 
-    const setVal = (e) => {
+    const setVal = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 
         const { name, value } = e.target;
 
@@ -29,7 +33,7 @@ const Contact = ({ setSelectedPage }) => {
         })
     };
 
-    const userData = async (e) => {
+    const userData = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const { name, email, message } = inpval;
@@ -99,8 +103,7 @@ const Contact = ({ setSelectedPage }) => {
                             visible: { opacity: 1, y: 0 },
                         }}
                     >
-
-                        <form>
+                        <form onSubmit={userData}>
                             <input
                                 className={inputStyles}
                                 type="text"
@@ -132,12 +135,10 @@ const Contact = ({ setSelectedPage }) => {
                             <button
                                 type="submit"
                                 className="mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white"
-                                onClick={userData}
                             >
                                 SUBMIT
                             </button>
                         </form>
-                        <ToastContainer />
                     </motion.div>
 
                     <motion.div
@@ -161,6 +162,7 @@ const Contact = ({ setSelectedPage }) => {
                     </motion.div>
                 </div>
             </motion.div>
+            <ToastContainer style={{ position: "fixed", zIndex: "100" }} />
         </section>
     )
 }
