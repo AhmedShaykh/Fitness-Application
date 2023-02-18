@@ -3,6 +3,7 @@ import Navbar from '@/Components/Navbar';
 import Home from '@/Components/Home';
 import Benefits from '@/Components/Benefits';
 import Footer from '@/Components/Footer';
+import OurClasses from '@/Components/Classes';
 import { SelectedPage } from '@/Shared/Types';
 
 const App: FC = () => {
@@ -34,7 +35,7 @@ const App: FC = () => {
             />
             <Home setSelectedPage={setSelectedPage} />
             <Benefits setSelectedPage={setSelectedPage} />
-            {/* <OurClasses setSelectedPage={setSelectedPage} /> */}
+            <OurClasses setSelectedPage={setSelectedPage} />
             {/* <ContactUs setSelectedPage={setSelectedPage} /> */}
             <Footer />
         </div>
