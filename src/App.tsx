@@ -1,7 +1,8 @@
 import { FC, useState, useEffect } from 'react';
 import Navbar from '@/Components/Navbar';
 import Home from '@/Components/Home';
-import Footer from './Components/Footer';
+import Benefits from '@/Components/Benefits';
+import Footer from '@/Components/Footer';
 import { SelectedPage } from '@/Shared/Types';
 
 const App: FC = () => {
@@ -32,7 +33,7 @@ const App: FC = () => {
                 setSelectedPage={setSelectedPage}
             />
             <Home setSelectedPage={setSelectedPage} />
-            {/* <Benefits setSelectedPage={setSelectedPage} /> */}
+            <Benefits setSelectedPage={setSelectedPage} />
             {/* <OurClasses setSelectedPage={setSelectedPage} /> */}
             {/* <ContactUs setSelectedPage={setSelectedPage} /> */}
             <Footer />
